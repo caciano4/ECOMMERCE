@@ -77,3 +77,4 @@ C:\Users\walte\OneDrive\Documentos\PROJETOS\ECOMERCE\ECOMERCE\obj\Debug\net9.0\r
 C:\Users\walte\OneDrive\Documentos\PROJETOS\ECOMERCE\ECOMERCE\obj\Debug\net9.0\ECOMERCE.pdb
 C:\Users\walte\OneDrive\Documentos\PROJETOS\ECOMERCE\ECOMERCE\obj\Debug\net9.0\ECOMERCE.genruntimeconfig.cache
 C:\Users\walte\OneDrive\Documentos\PROJETOS\ECOMERCE\ECOMERCE\obj\Debug\net9.0\ref\ECOMERCE.dll
+c:\Users\walte\OneDrive\Documentos\PROJETOS\ECOMERCE\ECOMERCE\obj\Debug\net9.0\ECOMERCE.sourcelink.json

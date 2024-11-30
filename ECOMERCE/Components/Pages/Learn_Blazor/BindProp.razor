@@ -1,0 +1,107 @@
+@page "/learnBlazor/bindProp"
+@rendermode InteractiveServer
+
+<div class="row">
+  <div class="col-6 border p-3">
+    <h2 class="text-primary">Product Playground</h2>
+    <hr />
+    Price: @Product.Price <br />
+    IsActive: <input type="checkbox" name="IsActive" @bind="Product.IsActive" /><br />
+    Input Price : <input type="number" @bind="@Product.Price" @bind:event="oninput" /><br />
+    <select @bind="@selectedProps">
+      @foreach (var prop in Product.ProductProperties)
+      {
+        <option value="@prop.Key">@prop.Value</option>
+      }
+    </select> <br />
+    Selected: @selectedProps
+  </div>
+  
+  <div class="col-6 border p-3">
+    <h2 class="text-primary">Product Summary</h2>
+    <hr />
+    ID : @Product.Id <br />
+    Name : @Product.Name <br />
+    This Product is: @(Product.IsActive ? "Ativo" : "Desativo") <br />
+  </div>
+  
+  <div class="col-12 p-4">
+    <h2 class="text-success">Product Table</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Product Name</td>
+          <td>Price</td>
+          <td>Is Active</td>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var prod in ProductList)
+        {
+          <tr>
+            <td><input type="text" @bind="@prod.Name" @bind:event="oninput" /></td>
+            <td><input type="text" @bind="@prod.Price" @bind:event="oninput" /></td>
+            <td><input type="checkbox" @bind="@prod.IsActive" @bind:event="oninput" /></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <br /><br />
+    <h2>Product Summary</h2>
+    @foreach(var prod in ProductList)
+    {
+      <p>@prod.Name [@prod.Price] is @(prod.IsActive?"Active":"InActive")</p>
+    }
+  </div>
+</div>
+
+@code {
+  private static string? selectedProps = "";
+  Product Product = new()
+    {
+      Id = 1,
+      Name = "Product",
+      IsActive = true,
+      Price = 300.10,
+      ProductProperties = new List<Product_Prop>()
+      {
+      new Product_Prop {Id=1, Key="color", Value="red"},
+      new Product_Prop {Id=2, Key="size", Value="20oz"},
+      new Product_Prop {Id=3, Key="Flavor", Value="Rose"},
+      }
+    };
+
+  List<Product> ProductList = new();
+
+  protected override void OnInitialized()
+  {
+    ProductList.Add(new()
+    {
+      Id = 1,
+      Name = "Michael Douglas",
+      IsActive = true,
+      Price = 5.99,
+      ProductProperties = new List<Product_Prop>()
+      {
+      new Product_Prop {Id=1, Key="Flavor", Value="Rose"},
+      new Product_Prop {Id=2, Key="Size", Value="20oz"},
+      new Product_Prop {Id=3, Key="Color", Value="Purple"},
+      }
+    });
+
+    ProductList.Add(new()
+    {
+      Id = 2,
+      Name = "john Poe",
+      IsActive = false,
+      Price = 10,
+      ProductProperties = new List<Product_Prop>()
+      {
+      new Product_Prop {Id=1, Key="Flavor", Value="Rose"},
+      new Product_Prop {Id=2, Key="Size", Value="20oz"},
+      new Product_Prop {Id=3, Key="Color", Value="Purple"},
+      }
+    });
+  }
+}

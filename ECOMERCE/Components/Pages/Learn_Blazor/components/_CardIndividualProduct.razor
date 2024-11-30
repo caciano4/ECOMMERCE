@@ -1,0 +1,77 @@
+<div class="bg-light border col-6" @onclick="() => SelectedItem(prod)">
+  <h3 class="text-success">@prod.Name </h3> <br />
+  <p>Add to favorite: </p><input type="checkbox" @onchange="FavoriteUpdate" />
+  <p>Show Properties: </p> <input type="checkbox" @bind-value="@prod.IsActive"
+    checked="@(prod.IsActive?"checked":null)" /> <br /><br />
+  @if (prod.IsActive)
+  {
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Field</td>
+          <td>Value</td>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var prop in @prod.ProductProperties)
+        {
+          <tr>
+            <td>
+              @prop.Key
+            </td>
+            <td>
+              @prop.Value
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } <br /> <br />
+  <_DeleteButtonCompanent ProductId="@prod.Id" ProductListComponent="@ProductList" OnRemoveProduct="RemoveProductItem">
+
+  </_DeleteButtonCompanent>
+</div>
+
+@code {
+  [Parameter]
+  public List<Product>? ProductList { get; set; }
+
+  [Parameter]
+  public Product? prod { get; set; }
+
+  [Parameter]
+  public int Counter { get; set; }
+
+  [Parameter]
+  public EventCallback<bool> OnFavoriteUpdated { get; set; }
+  private async Task FavoriteUpdate(ChangeEventArgs args)
+  => await OnFavoriteUpdated.InvokeAsync((bool)args.Value);
+
+  protected void RemoveProductItem(int ProductId)
+  {
+      if (ProductList == null)
+      {
+          Console.WriteLine("Product list is null.");
+          return;
+      }
+
+      Product? productToRemove = ProductList.FirstOrDefault(p => p.Id == ProductId);
+
+      if (productToRemove != null)
+      {
+          ProductList.Remove(productToRemove);
+          Console.WriteLine($"Product with ID {ProductId} removed.");
+      }
+      else
+      {
+          Console.WriteLine($"Product with ID {ProductId} not found.");
+      }
+  }
+  [Parameter]
+  public EventCallback<Product> OnChangeSelectedItem {get; set;}
+
+  protected void SelectedItem(Product? ProductSelected)
+  {
+    OnChangeSelectedItem.InvokeAsync(ProductSelected);
+  }
+}

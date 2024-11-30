@@ -1,0 +1,88 @@
+@page "/learnBlazor/demo-products"
+@rendermode InteractiveServer
+<PageTitle>Cosadunter</PageTitle>
+<h2 class="text-primary">Demo Products</h2>
+<h2 class="text-uppercase text-warning">Product Name: @ProductName</h2>
+
+<div class="border p-2 mt-2 bg-secundary">
+  Favorited: @TotalCount
+  <div class="row">
+    @foreach (var prod in @ProductList)
+    {
+      <_CardIndividualProduct ProductList="@ProductList" prod="@prod" Counter="@Count" OnFavoriteUpdated="FavoriteCountChange" OnChangeSelectedItem="ChangeSelectedItem" />
+    }
+  </div>
+</div>
+
+@* <div class="border p-2 m-2 bg-light">
+  <h3 class="text-bg-danger mt-4">Summary</h3>
+  @ProductList;
+</div> *@
+
+@code {
+  List<Product> ProductList = new();
+  public int Count {get; set;} = 0;
+  public int TotalCount {get; set;} = 0;
+  public string ProductName {get; set;} = "";
+  protected override void OnInitialized()
+  {
+    ProductList.Add(new Product()
+      {
+        Id = 1,
+        Name = "Calça",
+        IsActive = true,
+        Price = 300.10,
+        ProductProperties = new List<Product_Prop>()
+{
+new Product_Prop {Id = 1, Key = "Color", Value = "Blue" },
+new Product_Prop {Id = 2, Key = "Size", Value = "30oz" },
+new Product_Prop {Id = 3, Key = "Flavor", Value = "orange" },
+}
+      });
+
+    ProductList.Add(new Product()
+      {
+        Id = 2,
+        Name = "Sapato",
+        IsActive = false,
+        Price = 345.29,
+        ProductProperties = new List<Product_Prop>()
+{
+new Product_Prop {Id = 1, Key = "Color", Value = "Gray" },
+new Product_Prop {Id = 2, Key = "Size", Value = "45oz" },
+new Product_Prop {Id = 3, Key = "Flavor", Value = "Pizza" },
+}
+      });
+
+    ProductList.Add(new Product()
+      {
+        Id = 3,
+        Name = "camiseta",
+        IsActive = true,
+        Price = 100.29,
+        ProductProperties = new List<Product_Prop>()
+{
+new Product_Prop {Id = 1, Key = "Color", Value = "Purple" },
+new Product_Prop {Id = 2, Key = "Size", Value = "75oz" },
+new Product_Prop {Id = 3, Key = "Flavor", Value = "Calabreza" },
+}
+      });
+  }
+
+  protected void FavoriteCountChange(bool isSelected)
+  {
+    if(isSelected){
+       TotalCount++;
+    }else{
+      TotalCount--;
+    }
+  }
+
+  protected void ChangeSelectedItem(Product? Product)
+  {
+    Product? ProductSelected = ProductList.FirstOrDefault(p => p.Id == Product.Id);
+
+    ProductName = ProductSelected.Name;
+  }
+
+}

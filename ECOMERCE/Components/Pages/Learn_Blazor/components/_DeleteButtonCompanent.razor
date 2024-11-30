@@ -1,0 +1,19 @@
+@rendermode InteractiveServer
+
+<input type="button" class="btn btn-danger mb-2" value="Delete - @ProductId" 
+       @onclick="() => RemoveProduct(ProductId)" />
+
+@code {
+  [Parameter]
+  public int ProductId { get; set; } // Parameter for the Product ID
+
+  [Parameter]
+  public List<Product> ProductListComponent { get; set; } = new(); // List of Products passed from the parent
+
+  [Parameter]
+  public EventCallback<int> OnRemoveProduct { get; set; }
+  private async Task RemoveProduct(int productId)
+  {
+    await OnRemoveProduct.InvokeAsync((int) productId);
+  }
+}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj": {}
+    "C:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj": {}
   },
   "projects": {
-    "c:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj": {
+    "C:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj",
+        "projectUniqueName": "C:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj",
         "projectName": "ECOMERCE",
-        "projectPath": "c:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj",
+        "projectPath": "C:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\ECOMERCE.csproj",
         "packagesPath": "C:\\Users\\walte\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\obj\\",
+        "outputPath": "C:\\Users\\walte\\OneDrive\\Documentos\\PROJETOS\\ECOMERCE\\ECOMERCE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\walte\\AppData\\Roaming\\NuGet\\NuGet.Config"
